@@ -28,6 +28,8 @@ public class Activity_info extends AppCompatActivity {
         apellido.setText(objeto.getApellido());
         direccion.setText(objeto.getDireccion());
 
+        
+        Glide.with(this).load("http://i.imgur.com/DvpvklR.png").into(imagenDato);
 
 
 
