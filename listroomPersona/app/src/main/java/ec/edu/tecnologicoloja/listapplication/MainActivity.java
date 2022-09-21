@@ -34,13 +34,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         mPersonaLab=new PersonaLab(this);
 
+//los contenedores listView
        listView = findViewById(R.id.list);
         guardar = findViewById(R.id.txtNombre);
         apellido = findViewById(R.id.txtApellido);
         direccion = findViewById(R.id.txtDireccion);
 
+
+//los botones
         bguardar = findViewById(R.id.buttonGuardar);
         blimpiar = findViewById(R.id.buttonLimpiar);
+
+
         bguardar.setOnClickListener(this);
         blimpiar.setOnClickListener(this);
 
@@ -48,13 +53,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listItemAdapter=new ListAdapter(this,listaNombres);
         listView.setAdapter(listItemAdapter);
 
+// para mostrar los datos al darle click a la imagen
         listView.setOnItemClickListener ( new AdapterView.OnItemClickListener ( ) {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent info  =  new Intent(MainActivity.this,Activity_info.class);
                 info.putExtra("id", listaNombres.get(position));
                 startActivity(info);
-                                              }
+            }
 
             } ) ;
         }
@@ -66,10 +72,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPersona.setNombre(guardar.getText().toString());
         mPersona.setApellido((apellido.getText().toString()));
         mPersona.setDireccion((direccion.getText().toString()));
+
         mPersonaLab.addPersona(mPersona);
         guardar.setText(" ");
         apellido.setText(" ");
         direccion.setText(" ");
+
 
     }
 // CONSULTA A LA BASE DE DATOS
@@ -92,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             getAllPersonas();
             listItemAdapter.notifyDataSetChanged();
         }
+
     }
 
 }
